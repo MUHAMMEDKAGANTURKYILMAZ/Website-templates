@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudSync - Enterprise Data Synchronization Platform</title>
+    <meta name="description" content="CloudSync provides real-time data synchronization across distributed systems. Built for enterprise scale with sub-millisecond latency.">
+    <meta name="keywords" content="data sync, enterprise, cloud platform, real-time synchronization, distributed systems">
+    <meta property="og:title" content="CloudSync - Enterprise Data Synchronization">
+    <meta property="og:description" content="Real-time data synchronization for modern enterprises.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://cloudsync.io">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#3b82f6',
+                        accentLight: '#60a5fa',
+                        success: '#10b981',
+                        surface: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #0f172a; overflow-x: hidden; }
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); }
+        .glass-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .feature-icon { transition: all 0.3s ease; }
+        .feature-card:hover .feature-icon { transform: scale(1.1); color: #3b82f6; }
+        .feature-card { transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .pricing-card { transition: all 0.3s ease; }
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.12); }
+        .pricing-card.popular { border: 2px solid #3b82f6; }
+        .scroll-reveal { opacity: 0; transform: translateY(24px); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+        .tab-btn { transition: all 0.3s ease; }
+        .tab-btn.active { background: #3b82f6; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .integration-logo { filter: grayscale(100%); opacity: 0.6; transition: all 0.3s ease; }
+        .integration-logo:hover { filter: grayscale(0%); opacity: 1; }
+        .stat-number { font-variant-numeric: tabular-nums; }
+        .nav-blur { backdrop-filter: blur(12px); }
+        .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 nav-blur bg-white/80 border-b border-gray-100" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    </div>
+                    <span class="font-bold text-lg text-primary">CloudSync</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-sm text-gray-600 hover:text-accent transition-colors">Features</a>
+                    <a href="#solutions" class="text-sm text-gray-600 hover:text-accent transition-colors">Solutions</a>
+                    <a href="#pricing" class="text-sm text-gray-600 hover:text-accent transition-colors">Pricing</a>
+                    <a href="#integrations" class="text-sm text-gray-600 hover:text-accent transition-colors">Integrations</a>
+                    <a href="#" class="text-sm text-gray-600 hover:text-accent transition-colors">Docs</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-sm text-gray-600 hover:text-primary transition-colors">Sign In</a>
+                    <a href="#" class="px-5 py-2 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent/90 transition-all">Get Started</a>
+                </div>
+                <button class="md:hidden text-primary" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="hidden md:hidden bg-white border-t border-gray-100" id="mobileMenu">
+            <div class="px-6 py-4 space-y-3">
+                <a href="#features" class="block text-gray-600">Features</a>
+                <a href="#solutions" class="block text-gray-600">Solutions</a>
+                <a href="#pricing" class="block text-gray-600">Pricing</a>
+                <a href="#integrations" class="block text-gray-600">Integrations</a>
+                <a href="#" class="block text-accent font-medium">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center gradient-bg overflow-hidden pt-16">
+        <div class="hero-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm mb-6 animate__animated animate__fadeInUp">
+                        <span class="w-2 h-2 bg-success rounded-full animate-pulse"></span>
+                        Now with AI-powered conflict resolution
+                    </div>
+                    <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6 animate__animated animate__fadeInUp animate__delay-1s">
+                        Real-Time Data<br>Synchronization<br>at Scale
+                    </h1>
+                    <p class="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed animate__animated animate__fadeInUp animate__delay-2s">
+                        Keep your distributed systems in perfect harmony. Sub-millisecond latency, 99.99% uptime, and enterprise-grade security for teams that demand reliability.
+                    </p>
+                    <div class="flex flex-wrap gap-4 animate__animated animate__fadeInUp animate__delay-3s">
+                        <a href="#" class="px-8 py-3.5 bg-accent text-white font-medium rounded-lg hover:bg-accentLight transition-all shadow-lg shadow-accent/25">Start Free Trial</a>
+                        <a href="#" class="px-8 py-3.5 border border-white/20 text-white font-medium rounded-lg hover:bg-white/10 transition-all">View Demo</a>
+                    </div>
+                    <div class="mt-12 flex items-center gap-8 text-sm text-gray-500 animate__animated animate__fadeInUp animate__delay-4s">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>No credit card required</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>14-day free trial</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="glass-card rounded-2xl p-6 animate__animated animate__fadeInRight animate__delay-2s">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                            <span class="text-gray-400 text-xs ml-2 font-mono">cloudsync-dashboard</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-white text-sm font-medium">Sync Status</p>
+                                        <p class="text-gray-400 text-xs">Real-time synchronization active</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 bg-success/20 text-success text-xs rounded font-medium">Active</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-white text-sm font-medium">Throughput</p>
+                                        <p class="text-gray-400 text-xs">2.4M events/sec</p>
+                                    </div>
+                                </div>
+                                <span class="text-accent text-sm font-mono">+12%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-white text-sm font-medium">Security</p>
+                                        <p class="text-gray-400 text-xs">End-to-end encryption</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 bg-success/20 text-success text-xs rounded font-medium">AES-256</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-white/10">
+                            <div class="flex items-center justify-between text-xs text-gray-400">
+                                <span>Latency: 0.8ms</span>
+                                <span>Uptime: 99.99%</span>
+                                <span>Nodes: 24</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-surface border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center scroll-reveal">
+                    <p class="stat-number text-4xl lg:text-5xl font-bold text-primary mb-2">2.4M+</p>
+                    <p class="text-gray-500 text-sm">Events Processed/sec</p>
+                </div>
+                <div class="text-center scroll-reveal">
+                    <p class="stat-number text-4xl lg:text-5xl font-bold text-primary mb-2">99.99%</p>
+                    <p class="text-gray-500 text-sm">Guaranteed Uptime</p>
+                </div>
+                <div class="text-center scroll-reveal">
+                    <p class="stat-number text-4xl lg:text-5xl font-bold text-primary mb-2">500+</p>
+                    <p class="text-gray-500 text-sm">Enterprise Clients</p>
+                </div>
+                <div class="text-center scroll-reveal">
+                    <p class="stat-number text-4xl lg:text-5xl font-bold text-primary mb-2">&lt;1ms</p>
+                    <p class="text-gray-500 text-sm">Average Latency</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-medium text-sm tracking-wider uppercase">Features</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mt-4">Built for Modern Infrastructure</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Everything you need to keep your data synchronized across distributed systems, with the reliability and performance enterprises demand.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card p-8 bg-white rounded-2xl border border-gray-100 scroll-reveal">
+                    <div class="feature-icon w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Real-Time Sync</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Sub-millisecond data synchronization across all connected nodes. Event-driven architecture ensures immediate propagation of changes.</p>
+                </div>
+                <div class="feature-card p-8 bg-white rounded-2xl border border-gray-100 scroll-reveal">
+                    <div class="feature-icon w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Enterprise Security</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">End-to-end AES-256 encryption, SOC 2 Type II compliance, and granular access controls. Your data never leaves your infrastructure.</p>
+                </div>
+                <div class="feature-card p-8 bg-white rounded-2xl border border-gray-100 scroll-reveal">
+                    <div class="feature-icon w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Conflict Resolution</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">AI-powered conflict detection and resolution. Automatic merge strategies with customizable rules for complex data scenarios.</p>
+                </div>
+                <div class="feature-card p-8 bg-white rounded-2xl border border-gray-100 scroll-reveal">
+                    <div class="feature-icon w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Observability</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Comprehensive monitoring with distributed tracing, real-time metrics, and customizable alerting. Integrates with Datadog, New Relic, and Grafana.</p>
+                </div>
+                <div class="feature-card p-8 bg-white rounded-2xl border border-gray-100 scroll-reveal">
+                    <div class="feature-icon w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Multi-Region</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Deploy across multiple regions with automatic failover. Maintain data locality while ensuring global consistency.</p>
+                </div>
+                <div class="feature-card p-8 bg-white rounded-2xl border border-gray-100 scroll-reveal">
+                    <div class="feature-icon w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Developer Experience</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">RESTful and GraphQL APIs, SDKs for 12 languages, comprehensive documentation, and interactive sandbox environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Tabs -->
+    <section id="solutions" class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-medium text-sm tracking-wider uppercase">Solutions</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mt-4">Built for Every Use Case</h2>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-3 mb-12 scroll-reveal">
+                <button class="tab-btn active px-6 py-3 bg-white text-primary text-sm font-medium rounded-lg border border-gray-200" data-tab="ecommerce">E-Commerce</button>
+                <button class="tab-btn px-6 py-3 bg-white text-primary text-sm font-medium rounded-lg border border-gray-200" data-tab="fintech">FinTech</button>
+                <button class="tab-btn px-6 py-3 bg-white text-primary text-sm font-medium rounded-lg border border-gray-200" data-tab="healthcare">Healthcare</button>
+                <button class="tab-btn px-6 py-3 bg-white text-primary text-sm font-medium rounded-lg border border-gray-200" data-tab="gaming">Gaming</button>
+            </div>
+
+            <div class="tab-content active" id="tab-ecommerce">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-primary">Inventory Sync</p>
+                                    <p class="text-sm text-gray-500">Real-time stock updates across channels</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-primary">Order Management</p>
+                                    <p class="text-sm text-gray-500">Unified order processing pipeline</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-primary">Customer Data</p>
+                                    <p class="text-sm text-gray-500">360-degree customer profile sync</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-primary mb-4">E-Commerce Platform</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">Keep inventory, orders, and customer data perfectly synchronized across your entire e-commerce stack. From Shopify to custom warehouses, CloudSync ensures every system has the latest data without conflicts.</p>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Multi-channel inventory management</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Real-time price and promotion sync</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Order lifecycle tracking</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-fintech">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-primary">Transaction Sync</p>
+                                    <p class="text-sm text-gray-500">Real-time transaction processing</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-primary">Compliance</p>
+                                    <p class="text-sm text-gray-500">Audit trail and regulatory reporting</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-primary mb-4">Financial Services</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">Ensure transaction integrity and regulatory compliance with event-sourced architecture. Built for high-frequency trading and real-time risk management.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-healthcare">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-primary">Patient Records</p>
+                                    <p class="text-sm text-gray-500">HIPAA-compliant data sync</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-primary mb-4">Healthcare Systems</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">Synchronize patient records across EHR systems while maintaining HIPAA compliance. Support for HL7 FHIR standards and real-time clinical data exchange.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-gaming">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-primary">Game State</p>
+                                    <p class="text-sm text-gray-500">Real-time multiplayer sync</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-primary mb-4">Gaming & Live Events</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">Low-latency state synchronization for multiplayer games and live events. Handle millions of concurrent connections with consistent game state across all players.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-medium text-sm tracking-wider uppercase">Pricing</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mt-4">Simple, Transparent Pricing</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Start free and scale as you grow. No hidden fees, no surprises.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="pricing-card p-8 bg-white rounded-2xl border border-gray-200 scroll-reveal">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-primary">Starter</h3>
+                        <p class="text-gray-500 text-sm mt-1">For small projects</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-primary">$0</span>
+                        <span class="text-gray-500">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>10K events/month</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>2 connected nodes</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Community support</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 text-center border border-gray-200 text-primary font-medium rounded-lg hover:bg-gray-50 transition-all">Get Started</a>
+                </div>
+
+                <div class="pricing-card popular p-8 bg-white rounded-2xl scroll-reveal">
+                    <div class="inline-block px-3 py-1 bg-accent text-white text-xs font-medium rounded-full mb-4">Most Popular</div>
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-primary">Professional</h3>
+                        <p class="text-gray-500 text-sm mt-1">For growing teams</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-primary">$299</span>
+                        <span class="text-gray-500">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>1M events/month</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>20 connected nodes</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Priority support</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Advanced analytics</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 text-center bg-accent text-white font-medium rounded-lg hover:bg-accent/90 transition-all">Start Free Trial</a>
+                </div>
+
+                <div class="pricing-card p-8 bg-white rounded-2xl border border-gray-200 scroll-reveal">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-primary">Enterprise</h3>
+                        <p class="text-gray-500 text-sm mt-1">For large organizations</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-primary">Custom</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Unlimited events</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Unlimited nodes</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Dedicated support</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-600">
+                            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Custom SLA</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 text-center border border-gray-200 text-primary font-medium rounded-lg hover:bg-gray-50 transition-all">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations -->
+    <section id="integrations" class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-medium text-sm tracking-wider uppercase">Integrations</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-primary mt-4">Works With Your Stack</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Connect with the tools you already use. 200+ integrations and growing.</p>
+            </div>
+            
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">AWS</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Amazon Web Services</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">GCP</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Google Cloud</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">Azure</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Microsoft Azure</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">K8s</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Kubernetes</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">DB</span>
+                    </div>
+                    <span class="text-xs text-gray-500">PostgreSQL</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">MG</span>
+                    </div>
+                    <span class="text-xs text-gray-500">MongoDB</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">RD</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Redis</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">KF</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Kafka</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">SF</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Salesforce</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">SH</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Shopify</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">DD</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Datadog</span>
+                </div>
+                <div class="integration-logo flex flex-col items-center gap-2 p-4 scroll-reveal">
+                    <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-primary font-bold text-lg">GR</span>
+                    </div>
+                    <span class="text-xs text-gray-500">Grafana</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 gradient-bg">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <div class="scroll-reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Sync Your Data?</h2>
+                <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">Join 500+ enterprises already using CloudSync. Start your free trial today and experience the difference real-time synchronization makes.</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#" class="px-8 py-4 bg-accent text-white font-medium rounded-lg hover:bg-accentLight transition-all shadow-lg shadow-accent/25">Start Free Trial</a>
+                    <a href="#" class="px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/10 transition-all">Talk to Sales</a>
+                </div>
+                <p class="text-gray-500 text-sm mt-6">No credit card required. 14-day free trial.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        </div>
+                        <span class="font-bold text-lg">CloudSync</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">Real-time data synchronization for modern enterprises. Built for scale, designed for reliability.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Integrations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Changelog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API Reference</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                <p class="text-gray-400 text-sm"> CloudSync Inc. All rights reserved.</p>
+                <div class="flex items-center gap-6 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Security</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('shadow-sm', window.scrollY > 50);
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                tabContents.forEach(c => c.classList.remove('active'));
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
